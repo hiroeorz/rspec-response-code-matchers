@@ -1,6 +1,40 @@
-= rspec-response-code-matchers
+= rspec-response-code-matcher
 
-Description goes here.
+* http://github.com/hiroeorz/rspec-response-code-matchers/tree/master
+* mailto:hiroeorz@gmail.com
+
+== DESCRIPTION:
+
+RSpecResponseCodeMatchers is rspec's custom spec matcher, that checking http response code.
+
+  
+== SYNOPSIS:
+
+target is Integer or Object, that defined "status" method.
+
+  require "rspec_response_code_matcher"
+
+  500.should be_internal_server_error
+  404.should be_not_found
+
+===If you use merb rspec:
+
+in spec/spec_helper.rb:
+  require "rspec_response_code_matcher"
+  
+in spec/requests/sample_helper.rb:
+
+  describe "/sample/show" do
+    before(:each) do
+      @response = request("/sample/show")
+    end
+
+    it "should response code 301(redirect)" do
+      @response.should be_redirect          # match 3xx
+      @response.should be_moved_permanently # match 301
+    end
+  end
+
 
 == Copyright
 
